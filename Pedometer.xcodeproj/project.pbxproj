@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		427D99E9195DA97000E1CA9A /* HelpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 427D99E8195DA97000E1CA9A /* HelpTools.m */; };
 		42B636F8195174DB00F9A04E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B636F7195174DB00F9A04E /* Foundation.framework */; };
 		42B636FA195174DB00F9A04E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B636F9195174DB00F9A04E /* CoreGraphics.framework */; };
 		42B636FC195174DB00F9A04E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B636FB195174DB00F9A04E /* UIKit.framework */; };
@@ -22,6 +23,7 @@
 		42B63721195174DB00F9A04E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42B6371F195174DB00F9A04E /* InfoPlist.strings */; };
 		42B63723195174DB00F9A04E /* PedometerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B63722195174DB00F9A04E /* PedometerTests.m */; };
 		42B6372D1951867000F9A04E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B6372C1951867000F9A04E /* CoreMotion.framework */; };
+		42B6372F1959771100F9A04E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42B6372E1959771100F9A04E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		427D99E7195DA97000E1CA9A /* HelpTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpTools.h; sourceTree = "<group>"; };
+		427D99E8195DA97000E1CA9A /* HelpTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpTools.m; sourceTree = "<group>"; };
 		42B636F4195174DB00F9A04E /* Pedometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pedometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B636F7195174DB00F9A04E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		42B636F9195174DB00F9A04E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +59,7 @@
 		42B63720195174DB00F9A04E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		42B63722195174DB00F9A04E /* PedometerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PedometerTests.m; sourceTree = "<group>"; };
 		42B6372C1951867000F9A04E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		42B6372E1959771100F9A04E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B6372F1959771100F9A04E /* CoreLocation.framework in Frameworks */,
 				42B6372D1951867000F9A04E /* CoreMotion.framework in Frameworks */,
 				42B636FA195174DB00F9A04E /* CoreGraphics.framework in Frameworks */,
 				42B636FC195174DB00F9A04E /* UIKit.framework in Frameworks */,
@@ -104,6 +110,7 @@
 		42B636F6195174DB00F9A04E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42B6372E1959771100F9A04E /* CoreLocation.framework */,
 				42B6372C1951867000F9A04E /* CoreMotion.framework */,
 				42B636F7195174DB00F9A04E /* Foundation.framework */,
 				42B636F9195174DB00F9A04E /* CoreGraphics.framework */,
@@ -123,6 +130,8 @@
 				42B6370D195174DB00F9A04E /* ViewController.m */,
 				42B6370F195174DB00F9A04E /* Images.xcassets */,
 				42B636FE195174DB00F9A04E /* Supporting Files */,
+				427D99E7195DA97000E1CA9A /* HelpTools.h */,
+				427D99E8195DA97000E1CA9A /* HelpTools.m */,
 			);
 			path = Pedometer;
 			sourceTree = "<group>";
@@ -253,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427D99E9195DA97000E1CA9A /* HelpTools.m in Sources */,
 				42B6370E195174DB00F9A04E /* ViewController.m in Sources */,
 				42B63708195174DB00F9A04E /* AppDelegate.m in Sources */,
 				42B63704195174DB00F9A04E /* main.m in Sources */,
@@ -460,6 +470,7 @@
 				42B63728195174DB00F9A04E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42B63729195174DB00F9A04E /* Build configuration list for PBXNativeTarget "PedometerTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +479,7 @@
 				42B6372B195174DB00F9A04E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

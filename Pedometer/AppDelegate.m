@@ -12,20 +12,54 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    //Location Timer launch
+    [self locateTimer];
     return YES;
 }
-							
+
+-(void)checkLocation
+{
+    DLog(@"runCounter=%d, RemainTime=%f",self.count,[UIApplication sharedApplication].backgroundTimeRemaining);
+    
+    if (!(self.count%170))
+    {
+        DLog(@"startUpdatingLocation");
+        [self.locationManager startUpdatingLocation];
+    }
+    if (!(self.count%180))
+    {
+        DLog(@"stopUpdatingLocation");
+        [self.locationManager stopUpdatingLocation];
+    }
+        self.count++;
+
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+   
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+   
+        DLog(@"application Did Enter Background");
+    
+        self.backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:
+        ^{
+            DLog(@"Background handler called. Not running background tasks anymore.");
+            //[[UIApplication sharedApplication] endBackgroundTask:self.backgroundTask];
+            self.backgroundTask = UIBackgroundTaskInvalid;
+            
+            //if application backgraound mode will end than call location update
+            //[self.locationManager startUpdatingLocation];  
+        }];
+
+        // Start the long-running task and return immediately.
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+        {
+            [self locateTimer];
+        });
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -42,5 +76,60 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+#pragma mark - Location delegate
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    DLog(@"update location err-\n%@", error);
+}
+
+// Delegate method from the CLLocationManagerDelegate protocol.
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation* location = [locations lastObject];
+    DLog(@"location lat=%.3f  lon=%.3f ", location.coordinate.latitude, location.coordinate.longitude);
+}
+
+#pragma mark - property init
+
+-(CLLocationManager *)locationManager
+{
+    if (!_locationManager)
+    {
+        _locationManager=[[CLLocationManager alloc]init];
+        _locationManager.delegate=self;
+        _locationManager.distanceFilter=kCLDistanceFilterNone;
+        
+    }
+    return _locationManager;
+}
+
+-(NSTimer *)locateTimer
+{
+    if (!_locateTimer)
+    {
+        _locateTimer= [NSTimer scheduledTimerWithTimeInterval:1
+                                                       target:self
+                                                     selector:@selector(checkLocation)
+                                                     userInfo:nil
+                                                      repeats:YES];
+    }
+    return _locateTimer;
+}
+
+-(UILocalNotification *)debugNotification
+{
+    if (!_debugNotification)
+    {
+        _debugNotification=[[UILocalNotification alloc]init];
+        _debugNotification.fireDate=[NSDate dateWithTimeIntervalSinceNow:1];
+        _debugNotification.alertBody=[NSString stringWithFormat:@"runCounter=%d, RemainTime=%f",self.count,[UIApplication sharedApplication].backgroundTimeRemaining];
+        _debugNotification.timeZone=[NSTimeZone defaultTimeZone];
+    }
+    return _debugNotification;
+}
+
 
 @end
